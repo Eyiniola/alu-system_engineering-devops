@@ -1,0 +1,5 @@
+#!/usr/bin/env bash 
+#removing the password requirement
+Host *
+	IdentifyFile ~/.ssh/school
+	PasswordAuthentication no
