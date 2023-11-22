@@ -4,11 +4,11 @@ sudo apt-get update
 sudo apt-get -y install nginx
 
 # Create a custom HTML page with the content "Holberton School"
-echo "Holberton School" | sudo tee /var/www/html/index.html
+echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
 
 # Make sure Nginx is listening on port 80
 sudo sed -i 's/80 default_server/80 default_server ipv6only=on/' /etc/nginx/sites-available/default
 
 # Restart Nginx without using systemctl
-sudo kill -HUP $(cat /var/run/nginx.pid)
+sudo service nginx restart
 
