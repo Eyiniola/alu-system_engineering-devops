@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-#Install Nginx
-sudo apt-get update
-sudo apt-get -y install nginx
-echo "Holberton School" | sudo tee /var/www/html/index.html
-sudo service nginx restart
+# Bash script that configures a new Ubuntu machine nginx
 
+apt-get -y update
+apt-get -y install nginx
+ufw allow  'Nginx HTTP'
+echo "Holberton School" > /var/www/html/index.html
+service nginx restart
