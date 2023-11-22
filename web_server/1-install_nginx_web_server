@@ -2,7 +2,7 @@
 #Install Nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
-ufw allow  'Nginx HTTP'
+
 echo "Holberton School" | sudo tee /var/www/html/index.html
 sudo service nginx restart
 
