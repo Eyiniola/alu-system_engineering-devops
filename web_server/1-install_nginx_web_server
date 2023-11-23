@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
-# Bash script that configures a new Ubuntu machine nginx
+# Update package list and install Nginx
+sudo apt-get update
+sudo apt-get -y install nginx
 
-apt-get -y update
-apt-get -y install nginx
-ufw allow  'Nginx HTTP'
-echo "Holberton School" > /var/www/html/index.html
-service nginx restart
+# Create a custom HTML page with the content "Holberton School"
+echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
+
+# Configure Nginx to listen on port 80
+sudo sed -i 's/80 default_server/80 default_server ipv6only=on/' /etc/nginx/sites-available/default
+
+# Restart Nginx without using systemctl
+sudo kill -HUP $(cat /var/run/nginx.pid)
 
