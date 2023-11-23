@@ -1,14 +1,23 @@
 #!/usr/bin/env bash
-# Update package list and install Nginx
-sudo apt-get update
-sudo apt-get -y install nginx
+# bash script to install nginx web server & make the following configurations:
 
-# Create a custom HTML page with the content "Holberton School"
-echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
+apt-get update
+apt-get install -y nginx
 
-# Configure Nginx to listen on port 80
-sudo sed -i 's/80 default_server/80 default_server ipv6only=on/' /etc/nginx/sites-available/default
+mkdir /etc/nginx/html
 
-# Restart Nginx without using systemctl
-sudo kill -HUP $(cat /var/run/nginx.pid)
+touch /etc/nginx/html/index.html
 
+
+echo "Holberton School" > /etc/nginx/html/index.html
+
+
+printf %s "server {
+     listen      80 default_server;
+     listen      [::]:80 default_server;
+     root        /etc/nginx/html;
+     index       index.html index.htm;
+}
+" > /etc/nginx/sites-available/default
+
+service nginx restart
