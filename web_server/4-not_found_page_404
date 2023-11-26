@@ -7,16 +7,16 @@ sudo apt-get -y install nginx
 sudo rm /var/www/html/index.nginx-debian.html
 
 # Create a custom HTML file for the 404 page
-echo '<!DOCTYPE html>
+echo "<!DOCTYPE html>
 <html>
 <head>
     <title>404 Not Found</title>
 </head>
 <body>
     <h1>404 Not Found</h1>
-    <p>Ceci n&apos;est pas une page.</p>
+    <p>Ceci n'est pas une page</p>
 </body>
-</html>' | sudo tee /var/www/html/404.html > /dev/null
+</html>" | sudo tee /var/www/html/404.html > /dev/null
 
 # Configure Nginx to use the custom 404 page
 sudo bash -c 'cat > /etc/nginx/sites-available/default <<EOF
