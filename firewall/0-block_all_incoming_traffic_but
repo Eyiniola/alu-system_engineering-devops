@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Install UFW
+sudo apt-get -y update
+sudo apt-get -y install ufw
+
+# Configure UFW rules
+systemctl status ufw
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+sudo ufw allow ssh
+sudo ufw allow https
+sudo ufw allow http
+
+# Display UFW status
+ufw status
+ufw enable
