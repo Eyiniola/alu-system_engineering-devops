@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # debugging
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-systemctl restart nginx
-kill "$(pgrep 'nginx' | head -l )"
+service nginx restart
+curl 0:80
