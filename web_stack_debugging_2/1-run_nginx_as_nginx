@@ -1,10 +1,8 @@
-#!/usr/bin/env bash 
-#Install necessary tools and update Nginx configuration
-apt-get update
-apt-get install -y nginx
-sed -i 's/user www-data;/user nginx;/g; s/listen 80 default_server;/listen 8080;/g' /etc/nginx/nginx.conf /etc/nginx/sites-available/default
+#!/usr/bin/env bash
+# Fix this container so that Nginx is running as the nginx user.
 
-# Restart Nginx to apply changes and verify status
-systemctl restart nginx
-systemctl status nginx
-
+sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+chmod 644 /etc/nginx/nginx.conf
+pkill apache2
+sudo -u nginx service nginx start
